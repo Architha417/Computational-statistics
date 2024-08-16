@@ -1,1 +1,26 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
 
+# Load the Iris dataset
+df = px.data.iris()
+
+# Print the total number of records
+print("Total Number of Records:", df.shape)
+
+# Numerical attributes
+numerical_attributes = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+
+# Loop through each numerical attribute
+for attribute in numerical_attributes:
+    # Plot the normal distribution of the attribute
+    plt.hist(df[attribute], bins=20, density=True)
+    plt.title(f"Normal Distribution of {attribute}")
+    plt.xlabel(attribute)
+    plt.ylabel("Frequency")
+    plt.show()
+
+# Print the mean and standard deviation of all columns as a table
+print("\nMean and Standard Deviation of all columns:")
+print(df[numerical_attributes].describe().loc[['mean', 'std']])
